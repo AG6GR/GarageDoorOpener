@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "Optoisolator")(type "KiCad")(uri "${KIPRJMOD}/Optoisolator.pretty")(options "")(descr ""))
+)
