@@ -4,6 +4,7 @@ void setup() {
   Serial.begin(115200);
 
   // HomeSpan setup
+  homeSpan.setStatusPin(3);
   homeSpan.begin(Category::Lighting,"Garage Door");
   new SpanAccessory();
 
