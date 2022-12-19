@@ -1,11 +1,15 @@
-#include "LEDDevice.hpp"
+#include "GarageDoor.hpp"
+
+#define PIN_STATUS_LED 3
+#define PIN_DOOR_POSITION 6
+#define PIN_DOOR_SWITCH 7
 
 void setup() {
   Serial.begin(115200);
 
   // HomeSpan setup
-  homeSpan.setStatusPin(3);
-  homeSpan.begin(Category::Lighting,"Garage Door");
+  homeSpan.setStatusPin(PIN_STATUS_LED);
+  homeSpan.begin(Category::GarageDoorOpeners,"Garage Door");
   new SpanAccessory();
 
   // Accessory Information Service
@@ -13,8 +17,8 @@ void setup() {
   new Characteristic::Identify();
   new Characteristic::Model("ESP32 Dev Board");
   new Characteristic::FirmwareRevision("0.1"); 
-
-  new LEDDevice(16);
+  
+  new GarageDoor(PIN_DOOR_POSITION, PIN_DOOR_SWITCH);
 }
 
 void loop() {
