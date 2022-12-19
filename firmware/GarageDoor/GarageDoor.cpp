@@ -10,32 +10,31 @@ GarageDoor::GarageDoor(int sensorPin, int switchPin) : Service::GarageDoorOpener
   pinMode(sensorPin, INPUT);
   pinMode(switchPin, OUTPUT);
   digitalWrite(this->switchPin, LOW);
-  Serial.println("Creating GarageDoor"); 
+  WEBLOG("Creating GarageDoor"); 
 }
 
 void GarageDoor::pressSwitch() {
-  Serial.println("Enabling switchpin");
+  WEBLOG("Enabling switchPin");
   digitalWrite(this->switchPin, HIGH);
-  delay(1000);
-  Serial.println("Disabling switchpin");
+  delay(500);
+  WEBLOG("Disabling switchPin");
   digitalWrite(this->switchPin, LOW);
 }
 
 boolean GarageDoor::update() {
-  Serial.print("update ");
-  Serial.println(target->getNewVal());
+  WEBLOG("update %d", target->getNewVal());
   if (current->getVal() == target->getNewVal())
     return true;
   
   switch (target->getNewVal()) {
     case DOOR_OPEN:
-      Serial.println("update to DOOR_OPEN");
+      WEBLOG("update to DOOR_OPEN");
       this->pressSwitch();
       current->setVal(DOOR_OPEN);
       break;
     
     case DOOR_CLOSED:
-      Serial.println("update to DOOR_CLOSED");
+      WEBLOG("update to DOOR_CLOSED");
       this->pressSwitch();
       current->setVal(DOOR_CLOSED);
       break;
@@ -51,12 +50,12 @@ void GarageDoor::loop() {
     int readPos = digitalRead(this->sensorPin);
     if (readPos == LOW) {
       if (current->getVal() != DOOR_CLOSED) {
-        Serial.println("Detected door closed");
+        WEBLOG("Detected door closed");
         current->setVal(DOOR_CLOSED);
       }
     } else {
       if (current->getVal() != DOOR_OPEN) {
-        Serial.println("Detected door open");
+        WEBLOG("Detected door open");
         current->setVal(DOOR_OPEN);
       }
     }
