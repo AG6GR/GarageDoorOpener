@@ -10,7 +10,7 @@ void setup() {
   // HomeSpan setup
   homeSpan.setStatusPin(PIN_STATUS_LED);
   homeSpan.enableOTA();
-  homeSpan.enableWebLog(10,"pool.ntp.org","America/Los_Angeles","myLog");
+  homeSpan.enableWebLog(64,"pool.ntp.org","America/Los_Angeles","weblog");
   homeSpan.begin(Category::GarageDoorOpeners,"Garage Door");
   new SpanAccessory();
 
