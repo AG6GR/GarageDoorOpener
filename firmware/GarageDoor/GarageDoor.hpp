@@ -1,3 +1,7 @@
+/*
+ * (C) 2022 Sunny He
+ */
+
 #include "HomeSpan.h"
 #pragma once
 

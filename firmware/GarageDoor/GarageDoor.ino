@@ -1,3 +1,7 @@
+/*
+ * (C) 2022 Sunny He
+ */
+
 #include "GarageDoor.hpp"
 
 #define PIN_STATUS_LED 3

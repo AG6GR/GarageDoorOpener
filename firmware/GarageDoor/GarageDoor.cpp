@@ -1,3 +1,7 @@
+/*
+ * (C) 2022 Sunny He
+ */
+
 #include "GarageDoor.hpp"
 
 GarageDoor::GarageDoor(int sensorPin, int switchPin) : Service::GarageDoorOpener() {
