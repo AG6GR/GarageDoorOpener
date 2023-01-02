@@ -1,10 +1,15 @@
 # Garage Door Opener
 
+<center><img src="doc/board.jpg" alt="Finished PCB" width="50%"/></center>
+
+
 A bare-bones ESP32 based HomeKit enabled garage door opener using [HomeSpan](https://github.com/HomeSpan/HomeSpan).
 
 # Hardware
 
 To avoid any modification to the garage door opener itself, I designed the board to use its own position sensor and emulate a wall switch to trigger the garage door movement. Some commercial products emulate a wireless remote and indeed the ESP32 does have some [special function hardware](https://github.com/HomeSpan/HomeSpan/blob/master/docs/RMT.md) for generating pulse code signals, however I decided to skip the complexity for this first revision as the holiday season presented some serious schedule pressure for getting this finished. Likewise, for the door position sensor some products use a tilt sensor with the assumption the board would be glued to the moving door itself. I again opted for the simpler solution of a microswitch mounted on one of the door's guide rails to avoid the complexity of dealing with battery power and wireless control.
+
+<center><img src="doc/schematic.png" alt="Schematic" width="90%"/></center>
 
 To actuate the door, a wall switch normally would short a pair of lines connected to terminals on the back of the garage door opener. I measured these terminals with a voltmeter and found the high side was pulled up to 24V nominal, above some floating ground potential. Also of note is that the threshold voltage for triggering was quite low, less than 0.1V difference. The ideal part to use in this case would be a small relay, but I didn't have any on hand. As an alternative, I ended up using an optoisolator with an NPN transistor in a Darlington configuration to achieve the isolation and current capacity needed to drive the opener's trigger line low.
 
